@@ -580,6 +580,8 @@ local function FindAccessory(FromWhere, Texture, Mesh, Name) -- <Instance> <stri
 				MeshInstance = handle:FindFirstChild("SpecialMesh")
 			end
 
+			warn("FA -", (MeshInstance.TextureId or MeshInstance.TextureID), MeshInstance.MeshId, Name)
+
 			if MeshInstance.MeshId == "rbxassetid://" .. Mesh and (MeshInstance.TextureId == "rbxassetid://" .. Texture or MeshInstance.TextureID == "rbxassetid://" .. Texture) then
 				return x
 			end
@@ -1075,6 +1077,8 @@ Global.KadeAPI = {
 		local TextureId = HatInformation.TextureId
 		local MeshId = HatInformation.MeshId
 		local Name = HatInformation.Name
+
+		warn("SHA -", TextureId, MeshId, Name)
 
 		local Accessory = nil
 		local Timeout = 3
