@@ -1091,6 +1091,14 @@ Global.KadeAPI = {
 	end,
 
 	AddHatInUse = function(Handle, Part1, Offset)
+		local Dictionary = table.find(HatsInUse, Handle)
+		table.remove(HatsInUse, Dictionary)
+
+		local TextureId = Handle.SpecialMesh.TextureId
+		local MeshId = Handle.SpecialMesh.MeshId
+		local Name = Handle.Parent.Name
+
+		table.insert(HatsWithDifferentAligns, {TextureId, MeshId, Name, Part1, Offset})
 		HatsInUse[Handle] = {Part1, Offset}
 	end,
 
