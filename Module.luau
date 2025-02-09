@@ -1055,9 +1055,9 @@ Global.KadeAPI = {
 	end,
 
 	SetHatAlign = function(HatInformation, Part1, Offset) -- Aligns Hat.
-		assert(typeof(HatInformation) == "table",  "HatInformation is not an table.")
-		assert(Part1 and Part1:IsA("BasePart"), "Part1 is not a part.")
-		assert(typeof(Offset) == "CFrame", "Offset is not a part.")
+		--assert(typeof(HatInformation) == "table",  "HatInformation is not an table.")
+		--assert(Part1 and Part1:IsA("BasePart"), "Part1 is not a part.")
+		--assert(typeof(Offset) == "CFrame", "Offset is not a part.")
 
 		local TextureId = HatInformation.TextureId
 		local MeshId = HatInformation.MeshId
