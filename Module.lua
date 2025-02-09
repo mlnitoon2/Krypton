@@ -571,7 +571,20 @@ local function FindAccessory(FromWhere, Texture, Mesh, Name) -- <Instance> <stri
 	for _, x in GetChildren(FromWhere) do
 		if IsA(x, "Accessory") and x.Name == Name then
 
-			local HatData = ObtainMeshAndTextureOfAccessory(x)
+			local Handle = x:WaitForChild("Handle")
+			local MeshInstance
+
+			if Handle:IsA("MeshPart") then
+				MeshInstance = handle
+			else
+				MeshInstance = handle:FindFirstChild("SpecialMesh")
+			end
+
+			if MeshInstance.MeshId == "rbxassetid://" .. Mesh and (MeshInstance.TextureId == "rbxassetid://" .. Texture or MeshInstance.TextureID == "rbxassetid://" .. Texture) then
+				return x
+			end
+
+			--[[local HatData = ObtainMeshAndTextureOfAccessory(x)
 
 			if HatData then
 				local MeshNumber = ExtractNumbers(HatData.MeshId)
@@ -584,7 +597,7 @@ local function FindAccessory(FromWhere, Texture, Mesh, Name) -- <Instance> <stri
 				if MeshNumber == InputMeshNumber and TextureNumber == InputTextureNumber then
 					return x
 				end
-			end
+			end]]
 		end
 	end
 end
