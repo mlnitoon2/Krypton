@@ -571,22 +571,7 @@ local function FindAccessory(FromWhere, Texture, Mesh, Name) -- <Instance> <stri
 	for _, x in GetChildren(FromWhere) do
 		if IsA(x, "Accessory") and x.Name == Name then
 
-			local Handle = x:WaitForChild("Handle")
-			local MeshInstance
-
-			if Handle:IsA("MeshPart") then
-				MeshInstance = handle
-			else
-				MeshInstance = handle:FindFirstChild("SpecialMesh")
-			end
-
-			warn("FA -", (MeshInstance.TextureId or MeshInstance.TextureID), MeshInstance.MeshId, Name)
-
-			if MeshInstance.MeshId == "rbxassetid://" .. Mesh and (MeshInstance.TextureId == "rbxassetid://" .. Texture or MeshInstance.TextureID == "rbxassetid://" .. Texture) then
-				return x
-			end
-
-			--[[local HatData = ObtainMeshAndTextureOfAccessory(x)
+			local HatData = ObtainMeshAndTextureOfAccessory(x)
 
 			if HatData then
 				local MeshNumber = ExtractNumbers(HatData.MeshId)
@@ -599,7 +584,7 @@ local function FindAccessory(FromWhere, Texture, Mesh, Name) -- <Instance> <stri
 				if MeshNumber == InputMeshNumber and TextureNumber == InputTextureNumber then
 					return x
 				end
-			end]]
+			end
 		end
 	end
 end
@@ -1103,6 +1088,10 @@ Global.KadeAPI = {
 			table.insert(HatsWithDifferentAligns, {TextureId, MeshId, Name, Part1, Offset})
 			HatsInUse[Handle] = {Part1, Offset}
 		end
+	end,
+
+	AddHatInUse = function(Handle, Part1, Offset)
+		HatsInUse[Handle] = {Part1, Offset}
 	end,
 
 	DisconnectHatAlign = function(HatInformation) -- Disconnects hat
